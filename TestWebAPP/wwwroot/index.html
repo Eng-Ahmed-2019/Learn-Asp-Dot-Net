@@ -1,0 +1,92 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My First Website</title>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #f1f5f9;
+            color: #1e293b;
+        }
+
+        nav {
+            background: #0f172a;
+            color: white;
+            padding: 20px 40px;
+        }
+
+        nav h2 {
+            margin: 0;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 80px auto;
+            padding: 20px;
+        }
+
+        .card {
+            background: white;
+            padding: 40px;
+            border-radius: 16px;
+            text-align: center;
+            box-shadow: 0 8px 25px #00000010;
+        }
+
+        h1 {
+            color: #2563eb;
+            margin-bottom: 15px;
+        }
+
+        p {
+            color: #64748b;
+            line-height: 1.8;
+        }
+
+        button {
+            background: #2563eb;
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 16px;
+            margin-top: 15px;
+        }
+
+        button:hover {
+            background: #1d4ed8;
+        }
+    </style>
+</head>
+
+<body>
+
+    <nav>
+        <h2>My Website</h2>
+    </nav>
+
+    <div class="container">
+        <div class="card">
+            <h1>Welcome!</h1>
+
+            <p>
+                This is my first website using
+                HTML and CSS with ASP.NET Core.
+            </p>
+
+            <button onclick="alert('Hello Ahmed!')">
+                Click Me
+            </button>
+        </div>
+    </div>
+
+</body>
+</html>
