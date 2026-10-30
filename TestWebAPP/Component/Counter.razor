@@ -1,16 +1,253 @@
-﻿@page "/counter"
-@rendermode InteractiveServer
+﻿@page "/Counter"
+@using Microsoft.AspNetCore.Components.Web
 @using static Microsoft.AspNetCore.Components.Web.RenderMode
+@rendermode InteractiveServer
 
-<PageTitle>Counter</PageTitle>
+<PageTitle>Counter - Page</PageTitle>
 
-<h1>Counter</h1>
+<div class="counter-page">
+    <div class="counter-card">
 
-<p role="status">Current Count = @count</p>
+        <div class="counter-icon">↗</div>
 
-<button class="btn btn-primary" @onclick="Increment">
-    Click Me
-</button>
+        <p class="eyebrow">INTERACTIVE DEMO</p>
+        <h1>Counter</h1>
+        <p class="subtitle">Your numbers, your control.</p>
+
+        <div class="count-box">
+            <span class="count-label">CURRENT COUNT</span>
+            <div class="count-number">@count</div>
+            <span class="count-status">
+                @(count == 0 ? "Ready to start" : "You're doing great!")
+            </span>
+        </div>
+
+        <div class="button-group">
+            <button class="btn-main" @onclick="Increment">
+                + Increase
+            </button>
+
+            <button class="btn-secondary" @onclick="Decrement">
+                − Decrease
+            </button>
+        </div>
+
+        <button class="btn-reset" @onclick="Reset">
+            ↻ Reset counter
+        </button>
+
+        <p></p>
+
+        <a href="/" class="back-button">
+            <span class="back-arrow">←</span>
+            <span>Back to Home</span>
+        </a>
+
+        <div class="counter-footer">
+            <span>Built with Blazor</span>
+            <span>Interactive Server</span>
+        </div>
+
+    </div>
+</div>
+
+<style>
+    .counter-page {
+        min-height: 85vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 32px 16px;
+        background: radial-gradient(circle at top left, #dbeafe, transparent 45%), linear-gradient(135deg, #f8fafc, #eef2ff);
+        font-family: "Segoe UI", sans-serif;
+    }
+
+    .counter-card {
+        width: 100%;
+        max-width: 460px;
+        padding: 36px;
+        background: white;
+        border: 1px solid #e2e8f0;
+        border-radius: 28px;
+        text-align: center;
+        box-shadow: 0 20px 60px rgba(30, 64, 175, 0.12);
+    }
+
+    .counter-icon {
+        width: 58px;
+        height: 58px;
+        margin: 0 auto 18px;
+        display: grid;
+        place-items: center;
+        background: #dbeafe;
+        color: #2563eb;
+        border-radius: 18px;
+        font-size: 32px;
+        font-weight: bold;
+    }
+
+    .eyebrow {
+        color: #2563eb;
+        font-size: 12px;
+        font-weight: 800;
+        letter-spacing: 2px;
+    }
+
+    .counter-card h1 {
+        margin: 8px 0;
+        color: #0f172a;
+        font-size: 36px;
+        font-weight: 800;
+    }
+
+    .subtitle {
+        color: #64748b;
+        margin-bottom: 28px;
+    }
+
+    .count-box {
+        padding: 26px 16px;
+        margin-bottom: 22px;
+        background: #f8fafc;
+        border: 1px solid #e2e8f0;
+        border-radius: 20px;
+    }
+
+    .count-label {
+        color: #64748b;
+        font-size: 11px;
+        font-weight: 800;
+        letter-spacing: 1.5px;
+    }
+
+    .count-number {
+        margin: 8px 0;
+        color: #2563eb;
+        font-size: 64px;
+        line-height: 1.2;
+        font-weight: 800;
+    }
+
+    .count-status {
+        color: #64748b;
+        font-size: 13px;
+    }
+
+    .button-group {
+        display: flex;
+        gap: 12px;
+    }
+
+        .button-group button {
+            flex: 1;
+            padding: 14px 10px;
+            border: none;
+            border-radius: 12px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 700;
+            transition: transform 0.2s, background 0.2s;
+        }
+
+            .button-group button:hover {
+                transform: translateY(-2px);
+            }
+
+    .btn-main {
+        background: #2563eb;
+        color: white;
+    }
+
+        .btn-main:hover {
+            background: #1d4ed8;
+        }
+
+    .btn-secondary {
+        background: #e2e8f0;
+        color: #334155;
+    }
+
+        .btn-secondary:hover {
+            background: #cbd5e1;
+        }
+
+    .btn-reset {
+        width: 100%;
+        margin-top: 12px;
+        padding: 12px;
+        background: transparent;
+        border: 1px solid #e2e8f0;
+        border-radius: 12px;
+        color: #64748b;
+        cursor: pointer;
+        font-weight: 600;
+    }
+
+        .btn-reset:hover {
+            background: #f8fafc;
+            color: #2563eb;
+        }
+
+    .counter-footer {
+        display: flex;
+        justify-content: space-between;
+        gap: 8px;
+        margin-top: 28px;
+        padding-top: 18px;
+        border-top: 1px solid #e2e8f0;
+        color: #94a3b8;
+        font-size: 11px;
+    }
+
+    .back-button {
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        padding: 12px 20px;
+        margin-bottom: 24px;
+        color: #475569;
+        background: rgba(255, 255, 255, 0.9);
+        border: 1px solid #e2e8f0;
+        border-radius: 14px;
+        font-size: 14px;
+        font-weight: 700;
+        text-decoration: none;
+        box-shadow: 0 4px 12px rgba(15, 23, 42, 0.05);
+        transition: all 0.25s ease;
+    }
+
+        .back-button:hover {
+            color: white;
+            background: linear-gradient(135deg, #2563eb, #4f46e5);
+            border-color: transparent;
+            box-shadow: 0 8px 20px rgba(37, 99, 235, 0.2);
+            transform: translateX(-4px);
+        }
+
+    .back-arrow {
+        font-size: 20px;
+        line-height: 1;
+        transition: transform 0.25s ease;
+    }
+
+    .back-button:hover .back-arrow {
+        transform: translateX(-3px);
+    }
+
+    @@media (max-width: 420px) {
+        .counter-card {
+            padding: 24px 18px;
+        }
+
+            .counter-card h1 {
+                font-size: 30px;
+            }
+
+        .count-number {
+            font-size: 52px;
+        }
+    }
+</style>
 
 @code {
     private int count = 0;
@@ -18,5 +255,15 @@
     private void Increment()
     {
         count++;
+    }
+
+    private void Decrement()
+    {
+        count--;
+    }
+
+    private void Reset()
+    {
+        count = 0;
     }
 }
